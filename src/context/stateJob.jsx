@@ -262,7 +262,7 @@ export default function State(props) {
   // console.log(followers)
 
   const state = {
-    jobPost: jobPost,
+    jobPost: jobPost.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)),
     setJobPosts:setJobPosts,
     youFollow:youFollow,
     setYouFollow:setYouFollow,
