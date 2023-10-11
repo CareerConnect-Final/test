@@ -1,10 +1,10 @@
-
+import { useContext, useEffect, useState } from "react";
 import "./profile.scss";
 import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { StateContext } from "../../context/state";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
-import { useContext, useEffect, useState } from "react";
+import Posts from "../../components/posts/Posts";
 import Post from "../../components/post/Post";
 import axios from "axios";
 import cookie from "react-cookies";
@@ -341,7 +341,7 @@ useEffect(() => {
     <div className="profile">
       <div className="images">
         <img
-          src="https://images.pexels.com/photos/13440765/pexels-photo-13440765.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          src={state.userProfile.imageForCover || null}
           alt=""
           className="cover"
         />
