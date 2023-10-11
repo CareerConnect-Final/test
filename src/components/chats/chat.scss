@@ -56,3 +56,15 @@
 // .ce-custom-message-input{
 //     background-color: #e8e8e8  !important;
 // }
+div.ce-message-list{
+    height: calc((100% - 85px) - 48px);
+     overflow: auto !important; 
+    position: relative;
+    background-color: white;
+}
+div.ce-chat-list{
+    height: calc((100% - 85px) - 48px);
+     overflow: auto !important; 
+    position: relative;
+    background-color: white;
+}
