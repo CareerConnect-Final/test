@@ -1,0 +1,136 @@
+{
+    "Header": {
+        "title": "Welcome to Tashbeek",
+        "paragraph": "Connect, Collaborate, and Grow Your Professional Network with Tashbeek"
+    },
+    "About": {
+        "paragraph": "Tashbeek is more than just a networking platform; it's a vibrant community where professionals come together to foster meaningful connections and propel their careers to new heights.",
+        "Why": [
+            "Connect with Industry Leaders.",
+            "Unlock Opportunities for Career Growth.",
+            "Foster Meaningful Professional Relationships.",
+            "Stay Informed about Industry Trends."
+        ],
+        "Why2": [
+            "Access Exclusive Networking Events.",
+            "Showcase Your Expertise and Achievements.",
+            "Join Specialized Professional Groups.",
+            "Accelerate Your Professional Development."
+        ]
+    }
+,    
+    "Services": [{
+        "icon": "fa fa-file",
+        "name": "Create CV",
+        "text": "Craft a standout CV that showcases your skills and experiences. Make a lasting impression on potential employers."
+      },
+      {
+        "icon": "fa fa-check-square",
+        "name": "Apply for Jobs",
+        "text": "Apply for job posts directly through our platform. Take the next step in your career journey."
+
+      },
+      {
+        "icon": "fa fa-comment",
+        "name": "Chat and Interact",
+        "text": "Chat with friends and colleagues, and interact with their posts through comments and likes. Stay connected in real-time."
+      },
+        {
+            "icon": "fa fa-search",
+            "name": "Job Search",
+            "text": "Find your dream job by searching through various job listings. Follow companies and stay updated on job opportunities."
+          },
+          {
+            "icon": "fa fa-users",
+            "name": "Add Friends",
+            "text": "Expand your professional network by adding friends and connecting with professionals in your industry."
+          },
+          {
+            "icon": "fa fa-play",
+            "name": "Reels and Posts",
+            "text": "Share and watch short reels, and engage with posts from your connections. Stay connected with friends and colleagues."
+          }
+    ],
+    "Testimonials": [
+        {
+          "img": "img/testimonials/01.jpg",
+          "text": "\"I am truly thankful for Tashbeek! It helped me find the perfect job and kickstart my career. The platform is user-friendly, and the support from the community is amazing.\"",
+          "name": "Ahmed Salem"
+        },
+        {
+          "img": "img/testimonials/02.jpg",
+          "text": "\"Tashbeek made my job search journey so much easier. The features, like the CV creator and job matching, are incredible. I'm grateful for the opportunities it provided.\"",
+          "name": "Rami Yousef"
+        },
+        {
+          "img": "img/testimonials/03.jpg",
+          "text": "\"A big thank you to Tashbeek! I found a job that aligns perfectly with my skills and aspirations. The platform's features and community support are invaluable.\"",
+          "name": "Eslam Obeid"
+        },
+        {
+          "img": "img/testimonials/04.jpg",
+          "text": "\"I want to express my gratitude to Tashbeek. It not only helped me find a job but also provided resources for professional growth. Thank you for this amazing platform!\"",
+          "name": "Sally Daas"
+        }
+      ]
+      
+    ,
+    "Team": [{
+            "img": "img/team/01.jpg",
+            "name": "John Doe",
+            "job": "Director"
+        },
+        {
+            "img": "img/team/02.jpg",
+            "name": "Mike Doe",
+            "job": "Senior Designer"
+        }, {
+            "img": "img/team/03.jpg",
+            "name": "Jane Doe",
+            "job": "Senior Designer"
+        },
+        {
+            "img": "img/team/04.jpg",
+            "name": "Karen Doe",
+            "job": "Project Manager"
+        }
+    ],
+    "Contact": {
+        "address": "4321 California St, San Francisco, CA 12345 ",
+        "phone": "+1 123 456 1234",
+        "email": "info@company.com",
+        "facebook": "fb.com",
+        "twitter": "twitter.com",
+        "youtube": "youtube.com"
+    },
+    "Features": [{
+            "icon": "fa fa-comments-o",
+            "title": "Messaging",
+            "text": "Explore the power of connection with Tashbeek's messaging feature, Our platform empowers you to effortlessly add friends, expanding your professional network."
+        },
+        {
+            "icon": "fa fa-group",
+            "title": "Professional Insights",
+            "text": "Gain valuable network insights with Tashbeek. Explore trends, discover new opportunities, and stay informed about the latest developments in your industry."
+        }
+        ,
+        {
+            "icon": "fa fa-bullhorn",
+            "title": "Announcements Hub",
+            "text": "Stay in the loop with Tashbeek's Announcements Hub. Receive important updates, industry news, and exclusive opportunities directly through our platform's centralized announcement system."
+        }
+        ,
+        {
+            "icon": "fa fa-magic",
+            "title": "Knowledge Sharing",
+            "text": "Foster a culture of knowledge sharing on Tashbeek. Share your insights, contribute to discussions, and participate in thought leadership to enrich the professional community."
+        }
+    ],
+    "cardsData" : [
+        { "icon": "fa fa-github","icon1": "fa fa-linkedin","icon2": "fa fa-envelope", "github": "https://github.com/Anasalsmadi11", "gmail": "mailto:johndoe@gmail.com", "linkedin": "https://www.linkedin.com/in/anas-alsmadi/", "name": "Anas Alsmadi", "job": "Full Stack Developer", "img": "https://media.licdn.com/dms/image/C4E03AQHMkbqWQvJwNA/profile-displayphoto-shrink_800_800/0/1657108303529?e=1702512000&v=beta&t=Gp9ox3zc8fvOGDhQuQrFSNmV5rVFvdb7FosbBF5jK24" },
+        { "icon": "fa fa-github","icon1": "fa fa-linkedin","icon2": "fa fa-envelope", "github": "https://github.com/mohannaddQA", "gmail": "mailto:johndoe@gmail.com", "linkedin": "https://www.linkedin.com/in/mohannadqa/", "name": "Mohannad Abu Qarea", "job": "Full Stack Developer", "img": "https://avatars.githubusercontent.com/u/128734531?v=4" },
+        { "icon": "fa fa-github","icon1": "fa fa-linkedin","icon2": "fa fa-envelope","github": "https://github.com/Mohammad-Aljamal", "gmail": "mailto:johndoe@gmail.com", "linkedin": "https://www.linkedin.com/in/mohammad-omar-aljamal/", "name": "Mohammad Aljamal", "job": "Full Stack Developer", "img": "https://avatars.githubusercontent.com/u/128578725?v=4" },
+        { "icon": "fa fa-github","icon1": "fa fa-linkedin","icon2": "fa fa-envelope","github": "https://github.com/Motasem-Sulaiman", "gmail": "mailto:johndoe@gmail.com", "linkedin": "https://www.linkedin.com/in/motasem-sulaiman/", "name": "Motasem Sulaiman", "job": "Full Stack Developer", "img": "https://media.licdn.com/dms/image/D4E03AQGz8GnQGR295A/profile-displayphoto-shrink_800_800/0/1693498791598?e=1702512000&v=beta&t=Z5Zh1YURPtt3UOOryjQqoligVlXqmZr9REa57F3TToA" },
+        { "icon": "fa fa-github","icon1": "fa fa-linkedin","icon2": "fa fa-envelope","github": "https://github.com/esraaobeido", "gmail": "mailto:johndoe@gmail.com", "linkedin": "https://www.linkedin.com/in/esraa-obeido/", "name": "Esraa Obeido", "job": "Full Stack Developer", "img": "https://media.licdn.com/dms/image/C4D03AQFAp2EtptkmzQ/profile-displayphoto-shrink_800_800/0/1630698403792?e=1702512000&v=beta&t=E7b79TDR-squYa1dT_NNL6Qvied-wn_FC0GL7h73luQ" }
+    ]
+}

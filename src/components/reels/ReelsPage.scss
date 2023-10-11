@@ -1,0 +1,33 @@
+/* src/components/ReelsPage.scss */
+
+.reels-page {
+    text-align: center;
+  
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    .reels-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+  
+      .reel-item {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        max-width: 300px;
+  
+        video {
+          width: 100%;
+        }
+  
+        p {
+          margin-top: 10px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  

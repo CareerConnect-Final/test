@@ -1,0 +1,157 @@
+// Define some reusable variables
+$primaryColor: #000000;
+$hoverColor: #000000;
+$buttonBackgroundColor: teal;
+$textColor: #fffefe;
+$box-sizing: border-box;
+
+
+// Container styles
+html, .form-containerr {
+  margin: 0;
+  box-sizing: border-box;
+
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  .css-1sdxldj {
+    display: grid;
+    gap: 15px;
+    /* padding: 1.5rem; */
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.form-containerr {
+  
+  height: 140vh;
+  display: grid;
+  align-content: space-between;
+  align-items: center;
+  justify-content: space-around;;
+  background: url('https://images.pexels.com/photos/2680270/pexels-photo-2680270.jpeg?auto=compress&cs=tinysrgb&w=600'); // Set your animated background image here
+  background-size: cover;
+  animation: backgroundAnimation 10s infinite alternate;
+
+}
+.custom-text-fieldd::placeholder {
+    color: #888; /* Specify the desired color for the placeholder text */
+    font-size: 24px; /* Specify the desired font size for the placeholder text */
+    font-weight:bolder; /* Specify the desired font weight for the placeholder text */
+  }
+  
+
+@keyframes backgroundAnimation {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+.css-1sdxldj {
+    /* Your custom styles here */
+    color: red;
+    font-size: 16px;
+    width: 500px;
+    /* Add more styles as needed */
+  }
+  .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+    font-size: larger;
+    font-weight: bold;
+  }
+
+
+.css-1wc848c-MuiFormHelperText-root.Mui-error {
+    color: #d32f2f;
+    font-size: 15px;
+    font-weight: bold;
+}
+.custom-containerr {
+  margin: 20px ;
+  max-width: 600px;
+  padding: 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+
+// Typography styles
+.hover-effectt {
+  font-weight: bold;
+  text-align: center;
+  padding-top: 1rem;
+  font-size: clamp(1.5rem, 2.5rem, 3rem);
+  font-family: Verdana, Geneva, Tahoma, sans-serif; // Change the font family
+  color: $primaryColor;
+
+  &:hover {
+    color: $hoverColor;
+    cursor: pointer;
+  }
+}
+
+// Form styles
+.custom-formm {
+  .grid-box {
+    display: grid;
+    gap: 30px;
+    padding: 1.5rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    // Text field styles
+    .custom-text-fieldd {
+      background-color: #f6f6f6;
+      border: none;
+      color: #0d0d0d;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 50px;
+      margin: 5px;
+      width: 85%;
+      border: 2px solid #f6f6f6;
+      transition: all 0.5s ease-in-out;
+      border-radius: 5px;
+      
+      &:focus {
+        background-color: #fff;
+        border-bottom: 2px solid $primaryColor;
+      }
+      &::placeholder {
+        color: #888!important;
+        font-size: 124px!important;
+        font-weight:bolder!important;
+      }
+    }
+  }
+
+  // Button and link styles
+  .button-boxx {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+
+    .custom-buttonn {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: $buttonBackgroundColor;
+      color: #fff;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: $primaryColor;
+      }
+    }
+
+    .custom-linkk {
+      text-decoration: underline;
+      color: $primaryColor;
+      cursor: pointer;
+
+      &:hover {
+        color: $hoverColor;
+      }
+    }
+  }
+
