@@ -181,9 +181,9 @@ export default function State(props) {
 
 
 
-  // console.log(userProfile);
+  console.log(posts);
   const state = {
-    posts: posts,
+    posts: posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)),
     setPosts: setPosts,
     companyPosts:companyPosts,
     setCompanyPosts:setCompanyPosts,

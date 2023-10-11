@@ -19,6 +19,8 @@ const ProfileModal = ({ isOpen, closeModal }) => {
     email: user?.email || "",
     phoneNumber: user?.phoneNumber || "",
     career: user?.career || "",
+    profilePicture:user?.profilePicture||"",
+    imageForCover:user?.imageForCover||"",
     bio: user?.bio || "",
   });
 
@@ -30,7 +32,7 @@ const ProfileModal = ({ isOpen, closeModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const url = `https://final-backend-nvf1.onrender.com/home/users/${user?.id}`;
-    const { bio, email, firstName, lastName, phoneNumber, career } = userData;
+    const { bio, email, firstName, lastName, phoneNumber, career,profilePicture,imageForCover } = userData;
 
     const data = {
       bio,
@@ -39,6 +41,8 @@ const ProfileModal = ({ isOpen, closeModal }) => {
       lastName,
       phoneNumber,
       career,
+      profilePicture,
+      imageForCover,
     };
 
     if (authToken === null) {
@@ -74,6 +78,26 @@ const ProfileModal = ({ isOpen, closeModal }) => {
               value={userData.bio}
               onChange={handleInputChange}
               placeholder="About"
+            />
+          </Form.Group>
+          <Form.Group controlId="formUserName">
+            <Form.Label>Profile Picture</Form.Label>
+            <Form.Control
+              type="text"
+              name="profilePicture"
+              value={userData.profilePicture}
+              onChange={handleInputChange}
+              placeholder="profilePicture"
+            />
+          </Form.Group>
+          <Form.Group controlId="formUserName">
+            <Form.Label>Cover Image</Form.Label>
+            <Form.Control
+              type="text"
+              name="imageForCover"
+              value={userData.imageForCover}
+              onChange={handleInputChange}
+              placeholder="imageForCover"
             />
           </Form.Group>
           <Form.Group controlId="formEmail">

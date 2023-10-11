@@ -1,3 +1,4 @@
+import { useContext, useEffect, useState } from "react";
 import "./profile.scss";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PlaceIcon from "@mui/icons-material/Place";
@@ -8,7 +9,6 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { StateContext } from "../../context/state";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import Posts from "../../components/posts/Posts";
-import { useContext, useEffect, useState } from "react";
 import Post from "../../components/post/Post";
 import axios from "axios";
 // import { useLocation, useNavigate } from "react-router-dom";
@@ -326,7 +326,7 @@ const Profile = () => {
     <div className="profile">
       <div className="images">
         <img
-          src="https://images.pexels.com/photos/13440765/pexels-photo-13440765.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          src={state.userProfile.imageForCover || null}
           alt=""
           className="cover"
         />
