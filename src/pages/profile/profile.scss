@@ -143,6 +143,14 @@
           justify-content: space-between;
           margin-top: 15px;
         }
+        .sub-top :nth-child(1){
+          width: 120px;
+        }
+        .sub-top-top{
+          display: flex;
+          width: 100%;
+          justify-content: flex-end;
+        }
         .sub-top button{
           border: none;
           padding: 5px;
