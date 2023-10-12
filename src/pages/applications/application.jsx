@@ -28,7 +28,7 @@ const ApplicantPage = () => {
         console.log(applicantsData);
         // Filter the applicants based on sender_id
         const filteredApplicant = applicantsData.find(
-          (applicant) => applicant.applyer_id == sender_id
+          (applicant) => applicant.applyer_id == user.id
         );
 
         setFilteredApplicant(filteredApplicant);
@@ -44,7 +44,7 @@ const ApplicantPage = () => {
     >
       {filteredApplicant ? (
         <div style={{ margin: "20px" }}>
-          <ApplicantCard applicant={filteredApplicant} />
+          <ApplicantCard applicant={filteredApplicant} type={user.role} />
         </div>
       ) : (
         <p>No matching applicant found for sender ID {sender_id}.</p>

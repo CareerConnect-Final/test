@@ -42,16 +42,16 @@ function Editor(props) {
         <InputControl
           label="Title"
           placeholder="Enter title eg. Frontend developer"
-          value={"values.title"}
-          onClick={(event) =>
+          value={values.title}
+          onChange={(event) =>
             setValues((prev) => ({ ...prev, title: event.target.value }))
           }
         />
         <InputControl
           label="Company Name"
           placeholder="Enter company name eg. amazon"
-          value={"values.companyName"}
-          onClick={(event) =>
+          value={values.companyName}
+          onChange={(event) =>
             setValues((prev) => ({ ...prev, companyName: event.target.value }))
           }
         />

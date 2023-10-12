@@ -40,7 +40,7 @@ const styles = {
   },
 };
 
-const ApplicantCard = ({ applicant }) => {
+const ApplicantCard = ({ applicant, type }) => {
   const authToken = cookie.load("auth");
   const user = cookie.load("user");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -162,162 +162,311 @@ const ApplicantCard = ({ applicant }) => {
   };
 
   return (
-    <Card sx={styles.card}>
-      <CardMedia
-        component="img"
-        sx={styles.media}
-        image={applicant.user?.profilePicture}
-        alt="Profile Picture"
-      />
-      <CardContent>
-        <Typography variant="h6" component="div">
-          {applicant.user?.username}
-        </Typography>
-        <Typography variant="body2" color="textSecondary">
-          {applicant.user?.bio}
-        </Typography>
-      </CardContent>
-      <div sx={styles.buttonContainer}>
-        {applicant.status === "pending" && (
-          <>
-            <Button
-              variant="contained"
-              sx={{ margin: "4px" }}
-              onClick={() => handleViewCV(applicant.cv_link)}
-            >
-              View CV
-            </Button>
-            <Button
-              variant="contained"
-              color="success"
-              sx={{ margin: "4px" }}
-              onClick={handleAppointInterview}
-            >
-              Interview
-            </Button>
-            <Button
-              variant="contained"
-              color="error"
-              sx={{ margin: "4px" }}
-              onClick={handleReject}
-            >
-              Reject
-            </Button>
-          </>
-        )}
-        {applicant.status === "interview" && (
-          <>
-            <Button
-              variant="contained"
-              sx={{ margin: "4px" }}
-              onClick={() => handleViewCV(applicant.cv_link)}
-            >
-              View CV
-            </Button>
-            {/* Add Interview Info button here */}
-          </>
-        )}
-        {applicant.status === "rejected" && (
-          <Button
-            variant="contained"
-            sx={{ margin: "4px" }}
-            onClick={() => handleViewCV(applicant.cv_link)}
-          >
-            View CV
-          </Button>
-        )}
-      </div>
-      <Modal open={isModalOpen} onClose={handleCloseModal}>
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            backgroundColor: "white",
-            padding: "20px",
-            borderRadius: "8px",
-            boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
-            width: "400px", // Increase width for more space
-          }}
-        >
-          <div>
-            <h2>Enter Interview Data</h2>
-            <div style={{ margin: "10px 0" }}>
-              {" "}
-              {/* Add margin */}
-              <label>Date:</label>
-              <input
-                type="text" // Display date as a string
-                name="date"
-                value={interviewData.date}
-                placeholder="Interview date"
-                onChange={handleInterviewDataChange}
-                style={{ marginLeft: "10px" }} // Align and add margin
-              />
-            </div>
-            <div style={{ margin: "10px 0" }}>
-              {" "}
-              {/* Add margin */}
-              <label>Location:</label>
-              <input
-                type="text"
-                name="location"
-                placeholder="Interview Location"
-                value={interviewData.location}
-                onChange={handleInterviewDataChange}
-                style={{ marginLeft: "10px" }} // Align and add margin
-              />
-            </div>
-            <Button
-              variant="contained"
-              color="success"
-              onClick={handleInterviewSubmit}
-              sx={{ marginTop: "20px" }}
-            >
-              Submit Interview
-            </Button>
+    <>
+      {" "}
+      {type === "company" ? (
+        <Card sx={styles.card}>
+          <CardMedia
+            component="img"
+            sx={styles.media}
+            image={applicant.user?.profilePicture}
+            alt="Profile Picture"
+          />
+          <CardContent>
+            <Typography variant="h6" component="div">
+              {applicant.user?.username}
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              {applicant.user?.bio}
+            </Typography>
+          </CardContent>
+          <div sx={styles.buttonContainer}>
+            {applicant.status === "pending" && (
+              <>
+                <Button
+                  variant="contained"
+                  sx={{ margin: "4px" }}
+                  onClick={() => handleViewCV(applicant.cv_link)}
+                >
+                  View CV
+                </Button>
+                <Button
+                  variant="contained"
+                  color="success"
+                  sx={{ margin: "4px" }}
+                  onClick={handleAppointInterview}
+                >
+                  Interview
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  sx={{ margin: "4px" }}
+                  onClick={handleReject}
+                >
+                  Reject
+                </Button>
+              </>
+            )}
+            {applicant.status === "interview" && (
+              <>
+                <h6>interview date: {`${applicant.interviewDate}`}</h6>
+                <h6>interview location: {`${applicant.interviewLocation}`}</h6>
+                <Button
+                  variant="contained"
+                  sx={{ margin: "4px" }}
+                  onClick={() => handleViewCV(applicant.cv_link)}
+                >
+                  View CV
+                </Button>
+              </>
+            )}
+            {applicant.status === "rejected" && (
+              <>
+                <h2>rejection reason:{`${applicant.rejectionReason}`}</h2>
+                <Button
+                  variant="contained"
+                  sx={{ margin: "4px" }}
+                  onClick={() => handleViewCV(applicant.cv_link)}
+                >
+                  View CV
+                </Button>
+              </>
+            )}
           </div>
-        </div>
-      </Modal>
-      <Modal open={isRejectionModalOpen} onClose={handleCloseModal}>
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            backgroundColor: "white",
-            padding: "20px",
-            borderRadius: "8px",
-            boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
-            width: "400px",
-          }}
-        >
-          <div>
-            <h2>Enter Rejection Reason</h2>
-            <div style={{ margin: "10px 0" }}>
-              <input
-                type="text"
-                name="rejectionReason"
-                placeholder="Rejection Reason"
-                value={rejectionReason}
-                onChange={handleRejectionReasonChange}
-                style={{ width: "100%", margin: "10px 0" }}
-              />
-            </div>
-            <Button
-              variant="contained"
-              color="error"
-              onClick={handleRejectionSubmit}
-              sx={{ marginTop: "20px" }}
+          <Modal open={isModalOpen} onClose={handleCloseModal}>
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                backgroundColor: "white",
+                padding: "20px",
+                borderRadius: "8px",
+                boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                width: "400px", // Increase width for more space
+              }}
             >
-              Submit Rejection
-            </Button>
+              <div>
+                <h2>Enter Interview Data</h2>
+                <div style={{ margin: "10px 0" }}>
+                  <label>Date:</label>
+                  <input
+                    type="text"
+                    name="date"
+                    value={interviewData.date}
+                    placeholder="Interview date"
+                    onChange={handleInterviewDataChange}
+                    style={{ marginLeft: "10px" }}
+                  />
+                </div>
+                <div style={{ margin: "10px 0" }}>
+                  <label>Location:</label>
+                  <input
+                    type="text"
+                    name="location"
+                    placeholder="Interview Location"
+                    value={interviewData.location}
+                    onChange={handleInterviewDataChange}
+                    style={{ marginLeft: "10px" }}
+                  />
+                </div>
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={handleInterviewSubmit}
+                  sx={{ marginTop: "20px" }}
+                >
+                  Submit Interview
+                </Button>
+              </div>
+            </div>
+          </Modal>
+          <Modal open={isRejectionModalOpen} onClose={handleCloseModal}>
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                backgroundColor: "white",
+                padding: "20px",
+                borderRadius: "8px",
+                boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                width: "400px",
+              }}
+            >
+              <div>
+                <h2>Enter Rejection Reason</h2>
+                <div style={{ margin: "10px 0" }}>
+                  <input
+                    type="text"
+                    name="rejectionReason"
+                    placeholder="Rejection Reason"
+                    value={rejectionReason}
+                    onChange={handleRejectionReasonChange}
+                    style={{ width: "100%", margin: "10px 0" }}
+                  />
+                </div>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={handleRejectionSubmit}
+                  sx={{ marginTop: "20px" }}
+                >
+                  Submit Rejection
+                </Button>
+              </div>
+            </div>
+          </Modal>
+        </Card>
+      ) : (
+        <Card sx={styles.card}>
+          <CardMedia
+            component="img"
+            sx={styles.media}
+            image={applicant.user?.profilePicture}
+            alt="Profile Picture"
+          />
+          <CardContent>
+            <Typography variant="h6" component="div">
+              {applicant.user?.username}
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              {applicant.user?.bio}
+            </Typography>
+          </CardContent>
+          <div sx={styles.buttonContainer}>
+            {applicant.status === "pending" && (
+              <>
+                <h4>pending</h4>
+                <Button
+                  variant="contained"
+                  sx={{ margin: "4px" }}
+                  onClick={() => handleViewCV(applicant.cv_link)}
+                >
+                  View CV
+                </Button>
+              </>
+            )}
+            {applicant.status === "interview" && (
+              <>
+                <h6>company name: {`${applicant.company_name}`}</h6>
+                <h6>interview date: {`${applicant.interviewDate}`}</h6>
+                <h6>interview location: {`${applicant.interviewLocation}`}</h6>
+                <Button
+                  variant="contained"
+                  sx={{ margin: "4px" }}
+                  onClick={() => handleViewCV(applicant.cv_link)}
+                >
+                  View CV
+                </Button>
+              </>
+            )}
+            {applicant.status === "rejected" && (
+              <>
+                <p>company name: {`${applicant.company_name}`}</p>
+                <p>rejection reason: {`${applicant.rejectionReason}`}</p>
+                <Button
+                  variant="contained"
+                  sx={{ margin: "4px" }}
+                  onClick={() => handleViewCV(applicant.cv_link)}
+                >
+                  View CV
+                </Button>
+              </>
+            )}
           </div>
-        </div>
-      </Modal>
-    </Card>
+          <Modal open={isModalOpen} onClose={handleCloseModal}>
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                backgroundColor: "white",
+                padding: "20px",
+                borderRadius: "8px",
+                boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                width: "400px", // Increase width for more space
+              }}
+            >
+              <div>
+                <h2>Enter Interview Data</h2>
+                <div style={{ margin: "10px 0" }}>
+                  <label>Date:</label>
+                  <input
+                    type="text"
+                    name="date"
+                    value={interviewData.date}
+                    placeholder="Interview date"
+                    onChange={handleInterviewDataChange}
+                    style={{ marginLeft: "10px" }}
+                  />
+                </div>
+                <div style={{ margin: "10px 0" }}>
+                  <label>Location:</label>
+                  <input
+                    type="text"
+                    name="location"
+                    placeholder="Interview Location"
+                    value={interviewData.location}
+                    onChange={handleInterviewDataChange}
+                    style={{ marginLeft: "10px" }}
+                  />
+                </div>
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={handleInterviewSubmit}
+                  sx={{ marginTop: "20px" }}
+                >
+                  Submit Interview
+                </Button>
+              </div>
+            </div>
+          </Modal>
+          <Modal open={isRejectionModalOpen} onClose={handleCloseModal}>
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                backgroundColor: "white",
+                padding: "20px",
+                borderRadius: "8px",
+                boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                width: "400px",
+              }}
+            >
+              <div>
+                <h2>Enter Rejection Reason</h2>
+                <div style={{ margin: "10px 0" }}>
+                  <input
+                    type="text"
+                    name="rejectionReason"
+                    placeholder="Rejection Reason"
+                    value={rejectionReason}
+                    onChange={handleRejectionReasonChange}
+                    style={{ width: "100%", margin: "10px 0" }}
+                  />
+                </div>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={handleRejectionSubmit}
+                  sx={{ marginTop: "20px" }}
+                >
+                  Submit Rejection
+                </Button>
+              </div>
+            </div>
+          </Modal>
+        </Card>
+      )}
+    </>
   );
 };
 
