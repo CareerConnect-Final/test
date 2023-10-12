@@ -155,70 +155,65 @@ const ShareReels = () => {
             console.error("Error creating reel:", error);
           });
 
-          if (authToken === null) {
-            throw new Error("Authentication token not found.");
-          } else if (authToken != null) {
-            const headers = {
-              Authorization: `Bearer ${authToken}`,
-            };
-      
-            // axios
-            //   .get("https://final-backend-nvf1.onrender.com/home/reels", {
-            //     headers,
-            //   })
-            //   .then((response) => {
-            //     state.setStory([response.data, ...state.story]);
-            //   })
-            //   .catch((error) => {
-            //     setError(error);
-            //   });
-          }
+        if (authToken === null) {
+          throw new Error("Authentication token not found.");
+        } else if (authToken != null) {
+          const headers = {
+            Authorization: `Bearer ${authToken}`,
+          };
+
+          // axios
+          //   .get("https://final-backend-nvf1.onrender.com/home/reels", {
+          //     headers,
+          //   })
+          //   .then((response) => {
+          //     state.setStory([response.data, ...state.story]);
+          //   })
+          //   .catch((error) => {
+          //     setError(error);
+          //   });
+        }
       });
     });
   };
-
-
-
 
   //TEMPORARY
   const stories = [
     {
       id: 1,
-      name: "John Doe",
+      name: "sally",
       img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
     },
     {
       id: 2,
-      name: "John Doe",
-      img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+      name: "esraa",
+      img: "https://das.iowa.gov/sites/default/files/styles/16_9_499px_x_376px/public/images/2023-08/partners_handshake.jpg.webp?itok=zBlV1u_Q",
     },
     {
       id: 3,
-      name: "John Doe",
-      img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+      name: "ali",
+      img: "https://www.planetware.com/wpimages/2019/10/japan-in-pictures-most-beautiful-places-arashiyama-bamboo-grove-kyoto.jpg",
     },
     {
       id: 4,
-      name: "John Doe",
-      img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+      name: "ahmed",
+      img: "https://www.hubspot.com/hubfs/instagram-reels-pay-bonus.jpg",
     },
   ];
 
+  // const itemsPerPage = 4;
+  // const [startIndex, setStartIndex] = useState(0);
 
+  // const visibleStories = state.reels.slice(startIndex, startIndex + itemsPerPage);
+  // const showRightArrow = stories.length > itemsPerPage;
 
-    // const itemsPerPage = 4;
-    // const [startIndex, setStartIndex] = useState(0);
-  
-    // const visibleStories = state.reels.slice(startIndex, startIndex + itemsPerPage);
-    // const showRightArrow = stories.length > itemsPerPage;
-  
-    // const handleRightArrowClick = () => {
-    //   if (startIndex + itemsPerPage < stories.length && stories.length - (startIndex + itemsPerPage)>=itemsPerPage) {
-    //     setStartIndex(startIndex + itemsPerPage);
-    //   } else {
-    //     setStartIndex(stories.length - itemsPerPage);
-    //   }
-    // };
+  // const handleRightArrowClick = () => {
+  //   if (startIndex + itemsPerPage < stories.length && stories.length - (startIndex + itemsPerPage)>=itemsPerPage) {
+  //     setStartIndex(startIndex + itemsPerPage);
+  //   } else {
+  //     setStartIndex(stories.length - itemsPerPage);
+  //   }
+  // };
 
   return (
     <div className="stories">
@@ -234,21 +229,21 @@ const ShareReels = () => {
         />
         <label htmlFor="file">
           <div className="item">
-            {user ?<img src={user.profilePicture} alt="" />:""}
+            {user ? <img src={user.profilePicture} alt="" /> : ""}
             <span>Add Story</span>
           </div>
         </label>
         {videoUpload !== "" ? <button onClick={handleAdd}>+</button> : ""}
       </div>
 
-      {stories.map(story=>(
+      {stories.map((story) => (
         <div className="story" key={story.id}>
           <img src={story.img} alt="" />
           <span>{story.name}</span>
         </div>
       ))}
 
-        {/* {visibleStories.map((story) => (
+      {/* {visibleStories.map((story) => (
           <div className="story" key={story.id}>
             <img src={story.img} alt="" />
             <span>{story.name}</span>

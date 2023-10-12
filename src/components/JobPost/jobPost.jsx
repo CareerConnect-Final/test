@@ -111,7 +111,7 @@ const JobPosts = (props) => {
   const [applicants, setApplicants] = useState([]); // State to store applicants
   const [showApplicantsList, setShowApplicantsList] = useState(false);
   const [myCv, setMyCv] = useState("");
-
+  const [apply, setApply] = useState(false);
   const handleGetCVAndApply = (e) => {
     const userId = user.id;
     console.log("====>>>>", userId);
@@ -180,6 +180,7 @@ const JobPosts = (props) => {
     };
     console.log(sentData);
     socketService.socket.emit("applyJob", sentData);
+    setApply(true);
   };
 
   const handleShowApplicants = () => {
@@ -280,9 +281,14 @@ const JobPosts = (props) => {
               Share
             </div>
           </div>
+
           <div className="aply-btn">
             {!isCompany && !isOwner ? (
-              <button onClick={() => handleGetCVAndApply()}>Apply</button>
+              apply ? (
+                <button onClick={() => handleGetCVAndApply()}>Sent</button>
+              ) : (
+                <button onClick={() => handleGetCVAndApply()}>Apply</button>
+              )
             ) : null}
           </div>
 
