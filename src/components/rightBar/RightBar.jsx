@@ -58,13 +58,11 @@ const RightBar = () => {
 
     const isFollowing = send[userId];
     const endpoint = isFollowing
-    ? `https://final-backend-nvf1.onrender.com/home/unfollow/${userId}`
-    : `https://final-backend-nvf1.onrender.com/home/makefollow/${userId}`;
+      ? `https://final-backend-nvf1.onrender.com/home/unfollow/${userId}`
+      : `https://final-backend-nvf1.onrender.com/home/makefollow/${userId}`;
 
     axios
-      .post(
-        endpoint,
-        obj,{headers,})
+      .post(endpoint, obj, { headers })
       .then((data) => {
         console.log(data.data);
       })
@@ -80,7 +78,7 @@ const RightBar = () => {
   const handleUnfollow = (companyId) => {
     const encodedCompanyId = encodeURIComponent(companyId);
     const endpoint = `https://final-backend-nvf1.onrender.com/home/unfollow/${encodedCompanyId}`;
-  
+
     axios
       .delete(endpoint, { headers })
       .then((data) => {
@@ -89,15 +87,13 @@ const RightBar = () => {
       .catch((error) => {
         console.error("Error", error);
       });
-  
+
     setSend((prevRequests) => ({
       ...prevRequests,
-      [companyId]: false, 
+      [companyId]: false,
     }));
   };
-  
-  
-  
+
   const { friendRequests, acceptFriendRequest, declineFriendRequest } =
     useContext(StateContext);
   return (
@@ -106,31 +102,26 @@ const RightBar = () => {
         <div className="rightBar">
           <div className="container">
             <div id="careerItem">
-            <div  className="item">
-              <span>same field</span>
-              {stateJob.allUsers.map((user) => {
-                if (
-                  user.career === userToken.career && user.role == "user"
-                ) {
-                  return (
-                    <div key={user.id} className="user">
-                      <div className="userInfo">
-                        <img
-                          src={user?.profilePicture}
-                          alt=""
-                        />
-                      <Link
-                          to={`/profile/${user.id}`}
-                          style={{ textDecoration: "none", color: "inherit" }}
-                        >
-                          <span>{user.username}</span>
-                        </Link>
+              <div className="item">
+                <span>same field</span>
+                {stateJob.allUsers.map((user) => {
+                  if (user.career === userToken.career && user.role == "user") {
+                    return (
+                      <div key={user.id} className="user">
+                        <div className="userInfo">
+                          <img src={user?.profilePicture} alt="" />
+                          <Link
+                            to={`/profile/${user.id}`}
+                            style={{ textDecoration: "none", color: "inherit" }}
+                          >
+                            <span>{user.username}</span>
+                          </Link>
+                        </div>
                       </div>
-                    </div>
-                  );
-                }
-              })}
-            </div>
+                    );
+                  }
+                })}
+              </div>
             </div>
             <div className="item">
               <span>Followers</span>
@@ -202,55 +193,58 @@ const RightBar = () => {
               })}
             </div>
             {pageType === "job" && userToken.role === "user" && (
-  <div className="rightBar">
-    <div className="container">
-            <div className="item">
-              <span>Compnies You Follow</span>
-              {stateJob.allUsers.map((user) => {
-                if (
-                  user.role == "company" &&
-                  stateJob.youFollow.find(
-                    (follower) => follower.receiver_id === user.id
-                  )
-                ) {
-                  return (
-                    <div key={user.id} className="user">
-                      <div className="userInfo">
-                        <img src={user.profilePicture} alt="" />
-                        <Link
-                          to={`/profile/${user.id}`}
-                          style={{ textDecoration: "none", color: "inherit" }}
-                        >
-                          <span>{user.username}</span>
-                        </Link>
-                      </div>  
-                      <div className="buttons2">
-                  <button
-                    id="unfollow"
-                    onClick={() => handleUnfollow(user.id)}
-                  >
-                    Unfollow
-                  </button>
-                </div> 
-                    </div>
-                  );
-                }
-              })}
-            </div>
-            </div>
-        </div>
-      )}
+              <div className="rightBar">
+                <div className="container">
+                  <div className="item">
+                    <span>Compnies You Follow</span>
+                    {stateJob.allUsers.map((user) => {
+                      if (
+                        user.role == "company" &&
+                        stateJob.youFollow.find(
+                          (follower) => follower.receiver_id === user.id
+                        )
+                      ) {
+                        return (
+                          <div key={user.id} className="user">
+                            <div className="userInfo">
+                              <img src={user.profilePicture} alt="" />
+                              <Link
+                                to={`/profile/${user.id}`}
+                                style={{
+                                  textDecoration: "none",
+                                  color: "inherit",
+                                }}
+                              >
+                                <span>{user.username}</span>
+                              </Link>
+                            </div>
+                            <div className="buttons2">
+                              <button
+                                id="unfollow"
+                                onClick={() => handleUnfollow(user.id)}
+                              >
+                                Unfollow
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      }
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
-  
+
       {pageType === "" && userToken?.role === "user" && (
         <div className="rightBar">
           <div className="container">
             <div className="item">
               <span>Friends requests</span>
               {console.log(friendRequests)}
-              {friendRequests.map((request) =>       
+              {friendRequests.map((request) =>
                 request.status === "pending" &&
                 userToken?.id !== request.sender_id ? (
                   <div key={request.id} className="user">
@@ -350,7 +344,7 @@ const RightBar = () => {
               })}
             </div>
 
-            <div className="item">
+            {/* <div className="item">
               <span>Followers</span>
               {state.followers.map((user) => {             
                 {
@@ -370,8 +364,8 @@ const RightBar = () => {
                 }
                 return null; // Exclude users who are already friends
               })}
-            </div>
-         </div>
+            </div> */}
+          </div>
         </div>
       )}
       {/* {console.log(userId)} */}
