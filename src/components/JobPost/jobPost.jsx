@@ -1,4 +1,5 @@
 import "./jobPost.scss";
+import { useState, useContext, useEffect } from "react";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
@@ -6,7 +7,6 @@ import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom";
 import CommentsJob from "../jobComments/CommentsJob";
-import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { JobContext } from "../../context/stateJob";
@@ -17,6 +17,7 @@ import JobModal from "../jobModal/jobModal";
 const JobPosts = (props) => {
   const user = cookie.load("user");
   const authToken = cookie.load("auth");
+  const createdAt = new Date(props.post.createdAt).toLocaleString();
 
   const state = useContext(JobContext);
   const navigate = useNavigate();
@@ -202,7 +203,7 @@ const JobPosts = (props) => {
               >
                 <span className="name">{props.post.company_name}</span>
               </Link>
-              <span className="date">1 min ago</span>
+              <span className="date">{createdAt}</span>
             </div>
           </div>
           {props.post.user_id === user?.id && (

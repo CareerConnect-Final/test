@@ -107,7 +107,7 @@ const RightBar = () => {
           <div className="container">
             <div id="careerItem">
             <div  className="item">
-              <span>People with same career</span>
+              <span>same field</span>
               {stateJob.allUsers.map((user) => {
                 if (
                   user.career === userToken.career && user.role == "user"
@@ -330,7 +330,7 @@ const RightBar = () => {
         <div className="rightBar">
           <div className="container">
             <div className="item">
-              <span>People with same career</span>
+              <span>same field</span>
               {state.allUsers.map((user) => {
                 if (user.career === userToken.career && user.role == "user") {
                   return (

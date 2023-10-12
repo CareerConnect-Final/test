@@ -1,3 +1,4 @@
+import { useState, useContext, useEffect } from "react";
 import "./post.scss";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
@@ -6,7 +7,6 @@ import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Link } from "react-router-dom";
 import Comments from "../comments/Comments";
-import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { StateContext } from "../../context/state";
 import PostModal from "../postModal/PostModal";
@@ -17,6 +17,8 @@ import { useParams } from "react-router-dom";
 
 const Post = (props) => {
   const navigate = useNavigate();
+  const createdAt = new Date(props.post.createdAt).toLocaleString();
+
 
   // const userID = useParams();
   // console.log(userID.id)
@@ -134,7 +136,7 @@ const Post = (props) => {
                   {props.post.username}
                 </span>
               </Link>
-              <span className="date">1 min ago</span>
+              <span className="date">{createdAt}</span>
             </div>
           </div>
           {props.post.user_id === user?.id && (

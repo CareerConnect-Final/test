@@ -15,7 +15,7 @@ export const Header = (props) => {
                   <span></span>
                 </h1>
                 <p>{props.data ? props.data.paragraph : 'Loading'}</p>
-                <a className='btn btn-custom btn-lg page-scroll' style={{fontFamily:"Lato" , backgroundColor: "blanchedalmond"}}>
+                <a href="/login" className='btn btn-custom btn-lg page-scroll' style={{fontFamily:"Lato" , backgroundColor: "blanchedalmond"}}>
                   Sign in
                 </a>{' '}
               </div>
