@@ -186,8 +186,22 @@ const Navbar = () => {
   useEffect(() => {
     if (socketService.socket) {
       socketService.onConnect(() => {
-        console.log(socketService.socket);
         socketService.socket.on("newNotification", (notification) => {
+          console.log("New notification:", notification);
+          setNotifications((prevNotifications) => [
+            ...prevNotifications,
+            notification,
+          ]);
+          // if (!notification.seen) {
+          //   setUnseenNotificationCount((count) => count + 1);
+          // }
+        });
+      });
+    }
+
+    return () => {
+      if (socketService.socket) {
+        socketService.removeEventListener("newNotification", (notification) => {
           console.log("New notification:", notification);
           setNotifications((prevNotifications) => [
             ...prevNotifications,
@@ -197,24 +211,9 @@ const Navbar = () => {
             setUnseenNotificationCount((count) => count + 1);
           }
         });
-      });
-    }
+      }
+    };
   }, []);
-  //   return () => {
-  //     // if (socketService.socket) {
-  //     //   socketService.removeEventListener("newNotification", (notification) => {
-  //     //     console.log("New notification:", notification);
-  //     //     setNotifications((prevNotifications) => [
-  //     //       ...prevNotifications,
-  //     //       notification,
-  //     //     ]);
-  //     //     if (!notification.seen) {
-  //     //       setUnseenNotificationCount((count) => count + 1);
-  //     //     }
-  //     //   });
-  //     // }
-  //   };
-  // }, []);
 
   const handleSearch = async () => {
     if (authToken === null) {
@@ -410,7 +409,7 @@ const Navbar = () => {
                   >
                     {/* Conditionally render a link based on the action_type */}
                     {notification.action_type === "post" ? (
-                      <Link to={`/post/${notification.post_id}`}>
+                      <Link to={`/post/${notification.job_post_id}`}>
                         <ListItemAvatar>
                           <Avatar
                             alt={notification.senderName}
@@ -420,7 +419,7 @@ const Navbar = () => {
                       </Link>
                     ) : (
                       <Link
-                        to={`/applicant/${notification.post_id}/${notification.sender_id}`}
+                        to={`/applicant/${notification.job_post_id}/${notification.sender_id}`}
                       >
                         <ListItemAvatar>
                           <Avatar

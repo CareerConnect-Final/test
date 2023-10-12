@@ -42,16 +42,16 @@ function Editor(props) {
         <InputControl
           label="Title"
           placeholder="Enter title eg. Frontend developer"
-          value={values.title}
-          onChange={(event) =>
+          value={"values.title"}
+          onClick={(event) =>
             setValues((prev) => ({ ...prev, title: event.target.value }))
           }
         />
         <InputControl
           label="Company Name"
           placeholder="Enter company name eg. amazon"
-          value={values.companyName}
-          onChange={(event) =>
+          value={"values.companyName"}
+          onClick={(event) =>
             setValues((prev) => ({ ...prev, companyName: event.target.value }))
           }
         />
@@ -261,7 +261,7 @@ function Editor(props) {
           }
         />
       </div>
-      <div style={{overflow:"hidden"}} className={styles.row}>
+      <div style={{ overflow: "hidden" }} className={styles.row}>
         <InputControl
           label="Email"
           value={values.email}
