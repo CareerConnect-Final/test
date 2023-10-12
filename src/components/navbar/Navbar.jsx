@@ -44,7 +44,7 @@ import { StateContext } from "../../context/state";
 import { JobContext } from "../../context/stateJob";
 
 const Navbar = () => {
-  const user= cookie.load("user")
+  const user = cookie.load("user");
   const state = useContext(StateContext);
   const stateJob = useContext(JobContext);
   const { toggle, darkMode } = useContext(DarkModeContext);
@@ -60,7 +60,7 @@ const Navbar = () => {
 
       await logout();
 
-        navigate("/login");
+      navigate("/login");
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -186,6 +186,7 @@ const Navbar = () => {
   useEffect(() => {
     if (socketService.socket) {
       socketService.onConnect(() => {
+        console.log(socketService.socket);
         socketService.socket.on("newNotification", (notification) => {
           console.log("New notification:", notification);
           setNotifications((prevNotifications) => [
@@ -198,22 +199,22 @@ const Navbar = () => {
         });
       });
     }
-
-    return () => {
-      if (socketService.socket) {
-        socketService.removeEventListener("newNotification", (notification) => {
-          console.log("New notification:", notification);
-          setNotifications((prevNotifications) => [
-            ...prevNotifications,
-            notification,
-          ]);
-          if (!notification.seen) {
-            setUnseenNotificationCount((count) => count + 1);
-          }
-        });
-      }
-    };
   }, []);
+  //   return () => {
+  //     // if (socketService.socket) {
+  //     //   socketService.removeEventListener("newNotification", (notification) => {
+  //     //     console.log("New notification:", notification);
+  //     //     setNotifications((prevNotifications) => [
+  //     //       ...prevNotifications,
+  //     //       notification,
+  //     //     ]);
+  //     //     if (!notification.seen) {
+  //     //       setUnseenNotificationCount((count) => count + 1);
+  //     //     }
+  //     //   });
+  //     // }
+  //   };
+  // }, []);
 
   const handleSearch = async () => {
     if (authToken === null) {
@@ -289,22 +290,18 @@ const Navbar = () => {
                   )
                   .map((user) => (
                     <ul key={user.id} className="list-group">
-                      <Link className="search-profile"
+                      <Link
+                        className="search-profile"
                         to={`/profile/${user.id}`}
                         style={{ textDecoration: "none", color: "inherit" }}
                       >
-                      <img  
-                        src={user.profilePicture}
-                        // alt={`Profile Picture of ${user.username}`}
-                        className="user-photo"
-                      />
-                        
-                        <li className="search-result">
-                          {user.username}
-                        </li>{" "}
+                        <img
+                          src={user.profilePicture}
+                          // alt={`Profile Picture of ${user.username}`}
+                          className="user-photo"
+                        />
+                        <li className="search-result">{user.username}</li>{" "}
                       </Link>
-
-        
                     </ul>
                   ))}
               </div>
@@ -346,8 +343,7 @@ const Navbar = () => {
               padding: "20px",
               display: "flex",
               flexDirection: "column",
-              marginTop: "25px"
-              
+              marginTop: "25px",
             }}
           >
             <h2>Notifications</h2>
@@ -408,8 +404,10 @@ const Navbar = () => {
                   showSeenNotifications ? notification.seen : !notification.seen
                 )
                 .map((notification, index) => (
-                  <ListItem key={index} style={{marginBottom: "10px",
-                  paddingRight: "80px" }}>
+                  <ListItem
+                    key={index}
+                    style={{ marginBottom: "10px", paddingRight: "80px" }}
+                  >
                     {/* Conditionally render a link based on the action_type */}
                     {notification.action_type === "post" ? (
                       <Link to={`/post/${notification.post_id}`}>

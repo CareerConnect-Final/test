@@ -75,7 +75,7 @@ function AuthProvider(props) {
           username: username,
           secret: password,
           email: email,
-          firstName: firstName || companyName,
+          firstName: username,
           lastName: lastName,
         },
         { headers: { "Private-Key": "c1341f0f-d5f3-44c3-baa5-344a4d649833" } }
@@ -134,6 +134,7 @@ function AuthProvider(props) {
     if (loggedIn) {
       // Connect to Socket.io when the user logs in
       socketService.connect(Token);
+      console.log("connected");
     }
     if (loggedIn) {
       cookie.save("auth", Token);
@@ -192,9 +193,7 @@ function AuthProvider(props) {
 
     const savedSocketId = localStorage.getItem("socketId");
 
-    if (isLoggedIn && savedSocketId) {
-      socketService.connect(token, savedSocketId);
-    } else if (isLoggedIn) {
+    if (isLoggedIn) {
       socketService.connect(token);
     }
   }, []);

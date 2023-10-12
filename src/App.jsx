@@ -1,5 +1,6 @@
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import React from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -48,7 +49,9 @@ function AuthenticatedLayout() {
   return (
     <div className={`theme-${darkMode ? "dark" : "light"}`}>
       <PrivateRoute />
-      <Navbar />
+      <React.StrictMode>
+        <Navbar />
+      </React.StrictMode>
       <div style={{ display: "flex" }}>
         <LeftBar />
         <div style={{ flex: 6 }}>
@@ -65,7 +68,9 @@ function Cv() {
   return (
     <div className={`theme-${darkMode ? "dark" : "light"}`}>
       <PrivateRoute />
-      <Navbar />
+      <React.StrictMode>
+        <Navbar />
+      </React.StrictMode>
       <Outlet />
     </div>
   );
@@ -76,7 +81,9 @@ function Prof() {
   return (
     <div className={`theme-${darkMode ? "dark" : "light"}`}>
       {/* <PrivateRoute /> */}
-      <Navbar />
+      <React.StrictMode>
+        <Navbar />
+      </React.StrictMode>
       <div style={{ display: "flex" }}>
         <LeftBar />
         <div style={{ flex: 6 }}>
@@ -92,7 +99,9 @@ function Jobs() {
   return (
     <div className={`theme-${darkMode ? "dark" : "light"}`}>
       <PrivateRoute />
-      <Navbar />
+      <React.StrictMode>
+        <Navbar />
+      </React.StrictMode>
       <div style={{ display: "flex" }}>
         <LeftBar />
         <div style={{ flex: 6 }}>
@@ -110,7 +119,9 @@ function Apps() {
   return (
     <div className={`theme-${darkMode ? "dark" : "light"}`}>
       <PrivateRoute />
-      <Navbar />
+      <React.StrictMode>
+        <Navbar />
+      </React.StrictMode>
       <div style={{ display: "flex" }}>
         <LeftBar />
         <div style={{ flex: 6 }}>
@@ -126,7 +137,9 @@ function Ap() {
   return (
     <div className={`theme-${darkMode ? "dark" : "light"}`}>
       <PrivateRoute />
-      <Navbar />
+      <React.StrictMode>
+        <Navbar />
+      </React.StrictMode>
       <div style={{ display: "flex" }}>
         <LeftBar />
         <div style={{ flex: 6 }}>
@@ -143,7 +156,10 @@ function Reels() {
   return (
     <div className={`theme-${darkMode ? "dark" : "light"}`}>
       <PrivateRoute />
-      <Navbar />
+      <React.StrictMode>
+        <Navbar />
+      </React.StrictMode>
+
       <Outlet />
     </div>
   );

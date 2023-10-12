@@ -7,35 +7,67 @@ import ApplicantCard from "../../components/applicantsCard/applicant";
 const ApplicantPage = () => {
   const { jobId, sender_id } = useParams();
   const authToken = cookie.load("auth");
-
+  const user = cookie.load("user");
   const [applicants, setApplicants] = useState([]);
   const [filteredApplicant, setFilteredApplicant] = useState(null);
 
   useEffect(() => {
     // Fetch all applicants for the specified job ID
+    if (user.role == "company") {
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+      };
 
-    const headers = {
-      Authorization: `Bearer ${authToken}`,
-    };
+      axios
+        .get(
+          `https://final-backend-nvf1.onrender.com/home/applicants/${jobId}`,
+          {
+            headers,
+          }
+        )
+        .then((response) => {
+          const applicantsData = response.data.applicants;
+          setApplicants(applicantsData);
+          console.log(applicantsData);
+          // Filter the applicants based on sender_id
+          const filteredApplicant = applicantsData.find(
+            (applicant) => applicant.applyer_id == sender_id
+          );
 
-    axios
-      .get(`https://final-backend-nvf1.onrender.com/home/applicants/${jobId}`, {
-        headers,
-      })
-      .then((response) => {
-        const applicantsData = response.data.applicants;
-        setApplicants(applicantsData);
-        console.log(applicantsData);
-        // Filter the applicants based on sender_id
-        const filteredApplicant = applicantsData.find(
-          (applicant) => applicant.applyer_id == sender_id
-        );
+          setFilteredApplicant(filteredApplicant);
+        })
+        .catch((error) => {
+          console.error("Error while fetching applicants:", error);
+        });
+    }
 
-        setFilteredApplicant(filteredApplicant);
-      })
-      .catch((error) => {
-        console.error("Error while fetching applicants:", error);
-      });
+    if (user.role == "user") {
+      const headers = {
+        Authorization: `Bearer ${authToken}`,
+      };
+
+      axios
+        .get(
+          `https://final-backend-nvf1.onrender.com/home/applicants/${jobId}`,
+          {
+            headers,
+          }
+        )
+        .then((response) => {
+          const applicantsData = response.data.applicants;
+          setApplicants(applicantsData);
+          console.log(applicantsData);
+          // Filter the applicants based on sender_id
+          const filteredApplicant = applicantsData.find(
+            (applicant) => applicant.applyer_id == sender_id
+          );
+
+          setFilteredApplicant(filteredApplicant);
+        })
+        .catch((error) => {
+          console.error("Error while fetching applicants:", error);
+        });
+    }
   }, [jobId, sender_id, authToken]);
 
   return (

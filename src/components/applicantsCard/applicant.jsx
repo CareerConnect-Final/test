@@ -8,6 +8,7 @@ import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import axios from "axios";
 import cookie from "react-cookies";
+import socketService from "../../socket/socket";
 const styles = {
   card: {
     display: "flex",
@@ -41,7 +42,7 @@ const styles = {
 
 const ApplicantCard = ({ applicant }) => {
   const authToken = cookie.load("auth");
-
+  const user = cookie.load("user");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [interviewData, setInterviewData] = useState({
     date: "",
@@ -49,7 +50,7 @@ const ApplicantCard = ({ applicant }) => {
   });
   const [rejectionReason, setRejectionReason] = useState("");
   const [isRejectionModalOpen, setIsRejectionModalOpen] = useState(false);
-
+  console.log(applicant);
   const handleViewCV = (cvLink) => {
     const newWindow = window.open(cvLink, "_blank", "noopener,noreferrer");
     if (newWindow) {
@@ -107,6 +108,15 @@ const ApplicantCard = ({ applicant }) => {
         console.log("Interview response submitted successfully");
         // Close the interview modal
         setIsModalOpen(false);
+        const sentData = {
+          senderId: user.id,
+          senderName: user.username,
+          profilePicture: user.profilePicture,
+          receiverId: applicant.applyer_id,
+          message: `${user.username} has responded to your job application`,
+          jobPostId: applicant.job_id,
+        };
+        socketService.socket.emit("HandleApplyJob", sentData);
       })
       .catch((error) => {
         // Handle errors, e.g., show an error message to the user
@@ -133,6 +143,15 @@ const ApplicantCard = ({ applicant }) => {
       )
       .then((response) => {
         console.log("Rejection response submitted successfully");
+        const sentData = {
+          senderId: user.id,
+          senderName: user.username,
+          profilePicture: user.profilePicture,
+          receiverId: applicant.applyer_id,
+          message: `${user.username} has responded to your job application`,
+          jobPostId: applicant.job_id,
+        };
+        socketService.socket.emit("HandleApplyJob", sentData);
 
         setIsRejectionModalOpen(false);
       })
@@ -152,7 +171,7 @@ const ApplicantCard = ({ applicant }) => {
       />
       <CardContent>
         <Typography variant="h6" component="div">
-        {applicant.user?.username}
+          {applicant.user?.username}
         </Typography>
         <Typography variant="body2" color="textSecondary">
           {applicant.user?.bio}

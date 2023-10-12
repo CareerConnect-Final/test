@@ -168,6 +168,7 @@ const JobPosts = (props) => {
         // Handle errors, e.g., show an error message
         console.error("Error while applying:", error);
       });
+
     const sentData = {
       senderId: user.id,
       senderName: user.username,
@@ -176,6 +177,7 @@ const JobPosts = (props) => {
       message: `${user.username} has applied to your job post`,
       jobPostId: jobId,
     };
+    console.log(sentData);
     socketService.socket.emit("applyJob", sentData);
   };
 

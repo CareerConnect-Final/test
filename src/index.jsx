@@ -7,7 +7,6 @@ import { DarkModeContextProvider } from "./context/darkModeContext";
 import StateContext from "./context/state";
 import JobContext from "./context/stateJob";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <DarkModeContextProvider>
