@@ -40,7 +40,7 @@ const styles = {
   },
 };
 
-const ApplicantCard = ({ applicant, type }) => {
+const ApplicantCard = ({ applicant }) => {
   const authToken = cookie.load("auth");
   const user = cookie.load("user");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -164,7 +164,7 @@ const ApplicantCard = ({ applicant, type }) => {
   return (
     <>
       {" "}
-      {type === "company" ? (
+      {user.role === "company" ? (
         <Card sx={styles.card}>
           <CardMedia
             component="img"
@@ -355,26 +355,12 @@ const ApplicantCard = ({ applicant, type }) => {
                 <h6>company name: {`${applicant.company_name}`}</h6>
                 <h6>interview date: {`${applicant.interviewDate}`}</h6>
                 <h6>interview location: {`${applicant.interviewLocation}`}</h6>
-                <Button
-                  variant="contained"
-                  sx={{ margin: "4px" }}
-                  onClick={() => handleViewCV(applicant.cv_link)}
-                >
-                  View CV
-                </Button>
               </>
             )}
             {applicant.status === "rejected" && (
               <>
                 <p>company name: {`${applicant.company_name}`}</p>
                 <p>rejection reason: {`${applicant.rejectionReason}`}</p>
-                <Button
-                  variant="contained"
-                  sx={{ margin: "4px" }}
-                  onClick={() => handleViewCV(applicant.cv_link)}
-                >
-                  View CV
-                </Button>
               </>
             )}
           </div>
