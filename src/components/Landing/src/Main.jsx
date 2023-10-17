@@ -4,8 +4,8 @@ import { Header } from './components/header'
 import { Features } from './components/features'
 import { About } from './components/about'
 import { Services } from './components/services'
-import { Gallery } from './components/gallery'
-import { Testimonials } from './components/testimonials'
+// import { Gallery } from './components/gallery'
+// import { Testimonials } from './components/testimonials'
 import { Footer } from './components/footer'
 import {Teams} from './components/Team'
 import {Contact} from './components/contact'
@@ -30,8 +30,8 @@ const Main = () => {
       <Features data={landingPageData.Features} />
       <About data={landingPageData.About} />
       <Services data={landingPageData.Services} />
-      <Gallery />
-      <Testimonials data={landingPageData.Testimonials} />
+      {/* <Gallery /> */}
+      {/* <Testimonials data={landingPageData.Testimonials} /> */}
       <Teams/>
       <Contact/>
       <Footer />
